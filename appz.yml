@@ -41,4 +41,4 @@ properties:
       vault: POSTGRESQL_OPENPROJECT_PASSWORD
     POSTGRESQL_DOTNET_PASSWORD:
       vault: POSTGRESQL_DOTNET_PASSWORD
-    revision : 58
+    revision : 59
