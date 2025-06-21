@@ -16,6 +16,7 @@ deploy:
     replicas: 1
     port:
     - 5432
+    - 8006
     
 volumes:
   - claim: postgres-master-data
@@ -41,4 +42,5 @@ properties:
       vault: POSTGRESQL_OPENPROJECT_PASSWORD
     POSTGRESQL_DOTNET_PASSWORD:
       vault: POSTGRESQL_DOTNET_PASSWORD
+    ENABLE_BACKUP_METRIC: 1
     revision : 59
