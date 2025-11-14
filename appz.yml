@@ -48,4 +48,4 @@ properties:
       vault: POSTGRESQL_DOTNET_PASSWORD
     ALL_DB_BACKUP: 1
     ENABLE_BACKUP_METRIC: 1
-    revision : 61
+    revision : 62
