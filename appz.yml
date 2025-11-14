@@ -1,17 +1,17 @@
 app:
     name: Postgres Master
     code: POSTGRES
-    notify: appzdev@cloudbourne.co
+  #  notify: appzdev@cloudbourne.co
     
 build:
-    version: 13.X
+    version: 17.1
     env: PROD
     build_file: none
     output_files: output/*.zip
-    image_template: postgres_master-13.3
+    image_template: postgres_master-17.1
     
 deploy:
-    context: ecloudcontrol/PROD
+    context: nithinc-cloud/PROD
     type: statefulset
     replicas: 1
     port:
@@ -40,6 +40,7 @@ properties:
     POSTGRESQL_SYNCHRONOUS_COMMIT_MODE: on
     POSTGRESQL_NUM_SYNCHRONOUS_REPLICAS: 1
     POSTGRESQL_REP_USER: replica
+    ALL_DB_BACKUP: 1
     PGPASSWORD: 
       vault: PGPASSWORD
     POSTGRESQL_OPENPROJECT_PASSWORD:
