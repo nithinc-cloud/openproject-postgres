@@ -11,7 +11,7 @@ build:
     image_template: postgres_master-17.1
     
 deploy:
-    context: nithinc-clooud/DEV
+    context: nithinc-cloud/DEV
     type: statefulset
     replicas: 1
     port:
