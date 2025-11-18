@@ -5,13 +5,13 @@ app:
     
 build:
     version: 13.X
-    env: PROD
+    env: DEV
     build_file: none
     output_files: output/*.zip
     image_template: postgres_master-13.3
     
 deploy:
-    context: ecloudcontrol/PROD
+    context: nithinc-cloud/DEV
     type: statefulset
     replicas: 1
     port:
