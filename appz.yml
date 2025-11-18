@@ -1,5 +1,5 @@
 app:
-    name: Postgres Master
+    name: Postgres Master-1
     code: POSTGRES
     notify: appzdev@cloudbourne.co
     
