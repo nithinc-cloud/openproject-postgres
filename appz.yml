@@ -1,29 +1,34 @@
 app:
-    name: OpenProject Postgres Master
-    code: OpenProjectPostgres
-   # notify: appz@ecloudcontrol.com
+    name: Postgres Master
+    code: POSTGRES
+   # notify: appzdev@cloudbourne.co
     
 build:
-    version: 13.X
+    version: 17.1
     env: DEV
     build_file: none
     output_files: output/*.zip
-    image_template: postgres_master-13.3
+    image_template: postgres_master-17.1
     
 deploy:
-    context: nithinc-cloud/DEV
+    context: nithinc-clooud/DEV
     type: statefulset
     replicas: 1
     port:
     - 5432
+    - 8006
     
 volumes:
   - claim: postgres-master-data
     mount: /appz/data
     name: data
     size: 5Gi
-    mode: ReadWriteOnce   
-    
+    mode: ReadWriteOnce
+  - claim: cc-postgres-backup
+    mount: /appz/backup
+    name: backup
+    size: 5Gi
+          
 properties:
     POSTGRESQL_REPLICATION_MODE: master
     POSTGRESQL_DATA: /appz/data
@@ -39,12 +44,8 @@ properties:
       vault: PGPASSWORD
     POSTGRESQL_OPENPROJECT_PASSWORD:
       vault: POSTGRESQL_OPENPROJECT_PASSWORD
-    revision : 83
-
-    #WebDav Setup
-    #PUSH_BACKUP_WEBDAV: False
-    #DAV_FOLDER: DBBACKUP
-    #DAV_USER: appz
-    #DAV_USERPASSWORD:
-    #  vault: DAV_USERPASSWORD
-    #WEBDAV_BACKUP_URL: http://webdav-2-0/
+    POSTGRESQL_DOTNET_PASSWORD:
+      vault: POSTGRESQL_DOTNET_PASSWORD
+    ENABLE_BACKUP_METRIC: 1
+    ALL_DB_BACKUP: 1
+    revision : 60
