@@ -1,50 +1,51 @@
 app:
-    name: Postgres Master
-    code: POSTGRES
-   # notify: appzdev@cloudbourne.co
-    
+  name: Postgres Master
+  code: POSTGRES
+
 build:
-    version: 17.1
-    env: DEV
-    build_file: none
-    output_files: output/*.zip
-    image_template: postgres_master-17.1
-    
+  version: 17.1
+  env: DEV
+  build_file: none
+  output_files: output/*.zip
+  image_template: postgres_master-17.1
+
 deploy:
-    context: nithinc-cloud/DEV
-    type: statefulset
-    replicas: 1
-    port:
+  context: nithinc-cloud/DEV
+  type: statefulset
+  replicas: 1
+  port:
     - 5432
     - 8006
-    
+
 volumes:
   - claim: postgres-master-data
     mount: /appz/data
     name: data
     size: 5Gi
     mode: ReadWriteOnce
+
   - claim: cc-postgres-backup
     mount: /appz/backup
     name: backup
     size: 5Gi
-          
+    mode: ReadWriteOnce
+
 properties:
-    POSTGRESQL_REPLICATION_MODE: master
-    POSTGRESQL_DATA: /appz/data
-    POSTGRESQL_CONNECTUSER: postgres
-    POSTGRESQL_CONNECTIONDB: postgres
-    POSTGRESQL_PORT: 5432
-    POSTGRESQL_PASSWORD: 
-      vault: POSTGRESQL_PASSWORD
-    POSTGRESQL_SYNCHRONOUS_COMMIT_MODE: on
-    POSTGRESQL_NUM_SYNCHRONOUS_REPLICAS: 1
-    POSTGRESQL_REP_USER: replica
-    PGPASSWORD: 
-      vault: PGPASSWORD
-    POSTGRESQL_OPENPROJECT_PASSWORD:
-      vault: POSTGRESQL_OPENPROJECT_PASSWORD
-    POSTGRESQL_DOTNET_PASSWORD:
-      vault: POSTGRESQL_DOTNET_PASSWORD
-    ENABLE_BACKUP_METRIC: 1
-    revision : 60
+  POSTGRESQL_REPLICATION_MODE: master
+  POSTGRESQL_DATA: /appz/data
+  POSTGRESQL_CONNECTUSER: postgres
+  POSTGRESQL_CONNECTIONDB: postgres
+  POSTGRESQL_PORT: 5432
+  POSTGRESQL_PASSWORD:
+    vault: POSTGRESQL_PASSWORD
+  POSTGRESQL_SYNCHRONOUS_COMMIT_MODE: on
+  POSTGRESQL_NUM_SYNCHRONOUS_REPLICAS: 1
+  POSTGRESQL_REP_USER: replica
+  PGPASSWORD:
+    vault: PGPASSWORD
+  POSTGRESQL_OPENPROJECT_PASSWORD:
+    vault: POSTGRESQL_OPENPROJECT_PASSWORD
+  POSTGRESQL_DOTNET_PASSWORD:
+    vault: POSTGRESQL_DOTNET_PASSWORD
+  ENABLE_BACKUP_METRIC: 1
+  revision: 60
