@@ -1,7 +1,7 @@
 app:
     name: Postgres Master
     code: POSTGRES
-   # notify: appzdev@cloudbourne.co
+    notify: nchelath@ecloudcontrol.com
     
 build:
     version: 17.1
@@ -47,5 +47,4 @@ properties:
     POSTGRESQL_DOTNET_PASSWORD:
       vault: POSTGRESQL_DOTNET_PASSWORD
     ENABLE_BACKUP_METRIC: 1
-    ALL_DB_BACKUP: 1
     revision : 60
