@@ -4,7 +4,7 @@ app:
     #notify: appzdev@cloudbourne.co
     
 build:
-    version: 17.1
+    version: 17.2
     env: DEV
     build_file: none
     output_files: output/*.zip
